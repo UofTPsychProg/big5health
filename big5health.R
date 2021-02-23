@@ -28,7 +28,7 @@ ipip <- read_csv('ipip50_sample.csv')
 
 # The data is in wide format (i.e., each row is separate participant with
 # columns for different measures) and we need it in long format. Convert
-# to long format with a gather command on the trait items (A_1...O_10):
+# to long format with a pivot_longer command on the trait items (A_1...O_10):
 # **HINT: The long format data set should have 42000 rows**
 ipip.l <- ipip %>% 
   ...
@@ -47,7 +47,7 @@ ipip.comp <- ipip.l %>%
 
 # Cleaning up the other variables -----------------------------------------
 
-# Depending on how you solved the above steps, your ipip.comp ttibble may or may
+# Depending on how you solved the above steps, your ipip.comp tibble may or may
 # not have the age, gender, exer, BMI variables that we want to compare to the big 5. If
 # they are missing, let's add them in by joining the original ipip tibble with
 # ipip.comp tibble:
@@ -76,6 +76,7 @@ exer.avg <- ipip.comp %>%
 # If you properly created the exer.avg tibble above, the following code will 
 # create a plot and save it as figures/exer.pdf. Check your figure with 
 # figures/exer_answer.pdf to see if your data wrangling is correct!
+# (DON'T EDIT THIS CHUNK!)
 dodge <- position_dodge(0.5)
 ggplot(exer.avg,aes(x=trait,y=avg,colour=exer))+
   geom_pointrange(aes(ymin=avg-sem,ymax=avg+sem),
@@ -89,6 +90,7 @@ gender.avg <- ipip.comp %>%
   ...
 
 # create a gender plot and compare to the answer figure:
+# (DON'T EDIT THIS CHUNK!)
 ggplot(gender.avg,aes(x=trait,y=avg,colour=gender))+
   geom_pointrange(aes(ymin=avg-sem,ymax=avg+sem),
                   position=dodge)+
@@ -112,6 +114,7 @@ bmi.avg <- ipip.comp %>%
   ...  
 
 # create BMI plot and compare to the answer figure:
+# (DON'T EDIT THIS CHUNK!)
 ggplot(bmi.avg,aes(x=trait,y=avg,colour=BMI_cat))+
   geom_pointrange(aes(ymin=avg-sem,ymax=avg+sem),
                   position=dodge)+
@@ -126,6 +129,7 @@ age.avg <- ipip.comp %>%
   ...
 
 # create age plot and compare to the answer figure
+# (DON'T EDIT THIS CHUNK!)
 ggplot(age.avg,aes(x=trait,y=corrcoef))+
   geom_hline(yintercept=0)+
   geom_point(size=3)+
